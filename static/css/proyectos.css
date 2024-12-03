@@ -1,0 +1,32 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #1f1f1f; /* Gris oscuro como fondo */
+    color: #eaeaea; /* Blanco suave para el texto */
+}
+header {
+    background-color: #333333; /* Gris metálico oscuro */
+    color: #f0a500; /* Naranja para destacar el logo */
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.8em;
+}
+
+header nav a {
+    color: #f0a500; /* Naranja */
+    text-decoration: none;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+
+header nav a:hover {
+    color: #ffffff; /* Blanco al pasar el mouse */
+}

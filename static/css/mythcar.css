@@ -1,0 +1,122 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #1f1f1f; /* Gris oscuro como fondo */
+    color: #eaeaea; /* Blanco suave para el texto */
+}
+header {
+    background-color: #333333; /* Gris metálico oscuro */
+    color: #f0a500; /* Naranja para destacar el logo */
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.8em;
+}
+
+header nav a {
+    color: #f0a500; /* Naranja */
+    text-decoration: none;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+
+header nav a:hover {
+    color: #ffffff; /* Blanco al pasar el mouse */
+}
+
+.description {
+    background-color: #333; /* Fondo oscuro */
+    color: #fff; /* Texto blanco */
+    padding: 30px;
+    margin: 20px;
+    border-radius: 8px;
+    font-size: 1.1em;
+    line-height: 1.6;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.description p {
+    margin: 0;
+}
+/* Contenedor principal de la galería */
+.galery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  /* Estilo para cada contenedor de coche */
+  .car-container {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    width: 300px;
+    border: 1px solid #585858;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(158, 2, 2, 0.301);
+    background-color: #8b8b8b;
+    transition: all 0.3s ease;
+    margin-bottom: 40px; /* Separa cada vehículo */
+  }
+  
+  /* Títulos */
+  .car-container h1 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #333;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  /* Imágenes */
+  .car-container img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    transition: transform 0.3s ease;
+  }
+  
+  .car-container img:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Descripción del auto */
+  .car-container p {
+    font-size: 1rem;
+    color: #160e0e;
+    line-height: 1.5;
+    text-align: left;
+    margin-top: 10px;
+  }
+  
+  /* Negrita para los nombres de los autos y motor */
+  .car-container p strong {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  /* Separador de las especificaciones */
+  .car-container p br {
+    margin-bottom: 8px;
+  }
+  
+  /* Añadir un hover al contenedor completo */
+  .car-container:hover {
+    box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+  }
+  
+  .car-container li {
+    margin-bottom: 15px;
+    color: #160e0e;
+  }
