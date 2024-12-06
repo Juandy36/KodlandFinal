@@ -28,12 +28,21 @@
     </div>
 
     <h2>Proyectos:</h2>
-    <div class="image-gallery">
+    <div class="card-container">
         {% for image in images %}
-            <div class="image-item">
-                <img src="{{ url_for('get_img', id=image.id) }}" alt="{{ image.name }}" style="max-width: 200px; max-height: 200px; margin: 10px;">
-                <p>{{ image.name }}</p>
+        <div class="card">
+            <!-- Imagen del proyecto -->
+            <img src="{{ url_for('get_img', id=image.id) }}" alt="{{ image.name }}">
+            
+            <!-- Información del proyecto -->
+            <div class="card-content">
+                <h3>{{ image.project_name }}</h3>
+                <p><strong>Motor:</strong> {{ image.motor }}</p>
+                <p><strong>Potencia:</strong> {{ image.power }}</p>
+                <p><strong>Aceleración:</strong> {{ image.acceleration }}</p>
+                <p><strong>Velocidad Máxima:</strong> {{ image.top_speed }}</p>
             </div>
+        </div>
         {% endfor %}
     </div>
 </body>
