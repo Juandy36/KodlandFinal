@@ -63,6 +63,7 @@ h2 {
     overflow: hidden;
     text-align: center;
 }
+
 .center {
     display: flex;
     justify-content: center;
@@ -166,4 +167,50 @@ button:hover, input[type="submit"]:hover {
     box-shadow: inset 0px 0px 25px #f0a500;
 }
 
+/* Tarjetas de proyectos */
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
 
+.card {
+    background: #333;
+    border: 2px solid #f0a500;
+    border-radius: 10px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+    width: 400px; /* Aumentado para más espacio */
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card img {
+    width: 100%;
+    height: 250px; /* Más grande para destacar imágenes */
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 20px; /* Más espacio para texto */
+    color: #eaeaea;
+}
+
+.card-content h3 {
+    margin: 15px 0;
+    font-size: 22px; /* Más grande para título */
+    color: #f0a500;
+}
+
+.card-content p {
+    margin: 10px 0;
+    font-size: 16px; /* Tamaño más legible */
+    color: #eaeaea;
+    line-height: 1.5; /* Mejor legibilidad */
+}
