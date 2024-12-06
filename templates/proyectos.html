@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carros Miticos</title>
-    <link rel="stylesheet" href="static\css\proyectos.css">
+    <link rel="stylesheet" href="static/css/proyectos.css">
 </head>
 <body>
     <header>
@@ -17,5 +17,24 @@
         </nav>
     </header>
 
+    <h1>Sube tu proyecto!</h1>
+
+    <div class="center">
+        <div class="highlight">
+            <a href="{{ url_for('upload_page') }}">
+                Subir un Proyecto
+            </a>
+        </div>
+    </div>
+
+    <h2>Proyectos:</h2>
+    <div class="image-gallery">
+        {% for image in images %}
+            <div class="image-item">
+                <img src="{{ url_for('get_img', id=image.id) }}" alt="{{ image.name }}" style="max-width: 200px; max-height: 200px; margin: 10px;">
+                <p>{{ image.name }}</p>
+            </div>
+        {% endfor %}
+    </div>
 </body>
 </html>

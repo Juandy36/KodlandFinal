@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subir Proyecto</title>
+    <link rel="stylesheet" href="static/css/proyectos.css">
+</head>
+<body>
+    <h1>Subir Proyecto</h1>
+
+    <div class="center">
+        <form action="{{ url_for('upload') }}" enctype="multipart/form-data" method="POST">
+            <!-- Campo para la imagen -->
+            <input type="file" name="pic" required />
+
+            <!-- Campos adicionales -->
+            <label for="project_name">Nombre del Proyecto:</label>
+            <input type="text" id="project_name" name="project_name" placeholder="Ej: McLaren MP4/4" required />
+
+            <label for="motor">Motor:</label>
+            <input type="text" id="motor" name="motor" placeholder="Ej: V6 Biturbo 4.5L" required />
+
+            <label for="power">Potencia:</label>
+            <input type="text" id="power" name="power" placeholder="Ej: 450 hp, 510 Nm" required />
+
+            <label for="acceleration">0-100Km/h:</label>
+            <input type="text" id="acceleration" name="acceleration" placeholder="Ej: 2.4 segundos" required />
+
+            <label for="top_speed">Velocidad Máxima:</label>
+            <input type="text" id="top_speed" name="top_speed" placeholder="Ej: 321 km/h" required />
+
+            <!-- Botón para subir el proyecto -->
+            <input type="submit" value="Subir Proyecto" />
+        </form>
+
+        <!-- Botón para volver a proyectos -->
+        <div class="highlight">
+            <a href="{{ url_for('proyectos') }}">
+                Volver a Proyectos
+            </a>
+        </div>
+    </div>
+</body>
+</html>
