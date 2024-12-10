@@ -15,16 +15,25 @@ app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
 # Inicializar la base de datos
 db_init(app)
-
 # Ruta para la página principal
 @app.route("/")
 def home():
-    return render_template("index.html")
+    # Obtener los últimos 5 proyectos subidos
+    latest_projects = Img.query.order_by(Img.id.desc()).limit(3).all()  # Asegúrate de que esta consulta esté correcta
 
+    return render_template("index.html", latest_projects=latest_projects)
 # Ruta para la página de 'mitos de autos'
 @app.route("/mythcar")
 def mythcar():
     return render_template("mythcar.html")
+@app.route('/politica')
+def politica_privacidad():
+    return render_template('politica_privacidad.html')
+
+@app.route('/terminos')
+def terminos_condiciones():
+    return render_template('terminos_condiciones.html')
+
 
 # Ruta para la página de 'proyectos'
 @app.route("/proyectos")

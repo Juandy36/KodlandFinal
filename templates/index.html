@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leyendas Sobre Ruedas</title>
-    <link rel="stylesheet" href="static\css\mainpage.css">
+    <link rel="stylesheet" href="static/css/mainpage.css">
 </head>
 <body>
     <header>
@@ -20,36 +20,87 @@
     <div class="container">
         <section class="highlight">
             <h2>Bienvenido a Leyendas Sobre Ruedas</h2>
-            <p>El lugar donde los autos más icónicos del mundo no solo se exhiben, sino que cobran vida, compartiendo su historia, su esencia y su legado en cada curva, cada motor y cada detalle que los hace únicos e inolvidables.</p>
+            <p>Bienvenido a un espacio donde la pasión por los autos no tiene límites. Leyendas Sobre Ruedas no es solo un lugar de exhibición, es un viaje a través del tiempo y la historia, donde los autos más icónicos del mundo cobran vida. Cada vehículo es mucho más que una simple máquina: es una obra de ingeniería, una representación de la innovación y el diseño que ha marcado época. En este espacio, cada curva, cada motor y cada detalle tienen una historia que contar. Aquí podrás explorar cómo estos autos han dejado su huella en el mundo, cómo su legado trasciende generaciones y cómo continúan inspirando a millones de personas en todo el planeta. Cada modelo tiene una esencia única, una personalidad que se refleja en su diseño, su rendimiento y en los momentos inolvidables que han protagonizado. Únete a nosotros y déjate llevar por la magia de los autos que, más que simples vehículos, son verdaderas leyendas sobre ruedas.</p>
         </section>
 
-        <section class="highlight">
-            <h2>Carro de la Semana</h2>
-            <h3>Ford Mustang Shelby GT500 (1967)</h3>
-            <p>Un clásico del músculo americano que dominó las pistas y se convirtió en un ícono del cine.</p>
-            <a href="#">Ver más ></a>
-        </section>
-
+        <!-- Sección de proyectos recientes -->
         <section class="highlight">
             <h2>Proyectos Recientes</h2>
-            <ul>
-                <li><strong>Chevrolet Camaro Z28 1970</strong> – Restauración completa por Juan Pérez.</li>
-                <li><strong>Volkswagen Beetle 1965</strong> – Conversión a eléctrico.</li>
-            </ul>
-            <a href="#">Explorar Proyectos ></a>
+            <div class="projects-container">
+                {% for project in latest_projects %}
+                <div class="project-item">
+                    <h3>{{ project.project_name }}</h3>
+                    <img src="{{ url_for('get_img', id=project.id) }}" alt="{{ project.project_name }}">
+                    <p><strong>Motor:</strong> {{ project.motor }}</p>
+                    <p><strong>Potencia:</strong> {{ project.power }}</p>
+                    <p><strong>Velocidad Máxima:</strong> {{ project.top_speed }}</p>
+                </div>
+                {% endfor %}
+            </div>
+            <a href="/proyectos">Explorar Proyectos ></a>
         </section>
+        
 
         <section class="highlight">
             <h2>Únete a la Comunidad</h2>
             <p>¿Tienes un proyecto único? Súbelo a nuestra galería y comparte tu pasión con el mundo.</p>
-            <a href="#">Sube tu Proyecto Ahora</a>
+            <a href="{{ url_for('upload_page') }}">Sube tu Proyecto Ahora</a>
         </section>
     </div>
 
+    <section class="highlight">
+        <h2>Preguntas Frecuentes</h2>
+        
+        <!-- Preguntas y respuestas -->
+        <div class="faq-item">
+            <h3>¿Cómo puedo saber si mi batería necesita ser cambiada?</h3>
+            <p>Si tu carro no enciende, las luces se ven opacas o el motor arranca lentamente, es probable que necesites cambiar la batería.</p>
+        </div>
+        <div class="faq-item">
+            <h3>¿Qué hacer si el motor se sobrecalienta?</h3>
+            <p>Detén el carro inmediatamente, apaga el motor y espera a que se enfríe. Luego revisa el nivel de refrigerante y busca fugas.</p>
+        </div>
+        <div class="faq-item">
+            <h3>¿Por qué mis frenos hacen ruido?</h3>
+            <p>Esto puede indicar desgaste en las pastillas de freno. Verifica con un mecánico para evitar daños mayores.</p>
+        </div>
+        <div class="faq-item">
+            <h3>¿Cómo puedo mejorar el rendimiento de combustible?</h3>
+            <p>Realiza mantenimientos regulares, mantén la presión adecuada en los neumáticos y evita aceleraciones bruscas.</p>
+        </div>
+        
+        <!-- Conceptos básicos -->
+        <div class="faq-item">
+            <h3>¿Qué es el aceite del motor?</h3>
+            <p>El aceite del motor lubrica las partes móviles para reducir el desgaste y mantener el motor funcionando a una temperatura estable. Cambiarlo regularmente es clave para evitar daños.</p>
+        </div>
+        <div class="faq-item">
+            <h3>¿Qué es el sistema de suspensión?</h3>
+            <p>La suspensión se encarga de mantener el contacto entre las llantas y la carretera. Ayuda a que el vehículo sea estable, absorba impactos y proporcione un viaje más cómodo.</p>
+        </div>
+        <div class="faq-item">
+            <h3>¿Por qué es importante la alineación de las ruedas?</h3>
+            <p>La alineación incorrecta de las ruedas puede hacer que el vehículo se desvíe hacia un lado, aumente el desgaste de los neumáticos y afecte la estabilidad en carretera.</p>
+        </div>
+        <div class="faq-item">
+            <h3>¿Cómo revisar el nivel de refrigerante?</h3>
+            <p>El nivel de refrigerante debe revisarse regularmente. Si está bajo, el motor puede sobrecalentarse. Asegúrate de hacerlo cuando el motor esté frío para evitar quemaduras.</p>
+        </div>
+    
+        <!-- Consejos básicos para cuidar tu carro -->
+        <div class="faq-item">
+            <h3>Consejos Básicos para Cuidar tu Carro</h3>
+            <p>1. Cambia el aceite regularmente. <br> 2. Mantén los neumáticos inflados a la presión correcta. <br> 3. Revisa los frenos con frecuencia. <br> 4. Evita acelerar bruscamente o frenar de forma abrupta. <br> 5. Lava el carro para evitar la corrosión.</p>
+        </div>
+    
+        <!-- Botón para asistencia virtual -->
+        <a href="/asistencia-virtual" class="faq-btn">Ir a Asistencia Virtual</a>
+    </section>
+    
     <footer>
-        <p>Redes Sociales: <a href="#">Instagram</a> | <a href="#">Facebook</a> | <a href="#">Twitter</a></p>
+        <p>Redes Sociales: <a href="https://www.instagram.com/leyendas.sobre.ruedas/">Instagram</a> | <a href="https://www.facebook.com/profile.php?id=61570013714619">Facebook</a> | <a href="#">Twitter</a></p>
         <p>Contacto: soporte@leyendassobreruedas.com</p>
-        <p><a href="#">Términos y Condiciones</a> | <a href="#">Política de Privacidad</a></p>
+        <p><a href="/terminos">Términos y Condiciones</a> | <a href="/politica">Política de Privacidad</a></p>
     </footer>
 </body>
 </html>

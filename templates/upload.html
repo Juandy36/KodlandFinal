@@ -1,18 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Subir Proyecto</title>
-    <link rel="stylesheet" href="static/css/proyectos.css">
+    <link rel="stylesheet" href="static/css/upload.css">
 </head>
 <body>
-    <h1>Subir Proyecto</h1>
 
+    <header>
+        <h1>Leyendas Sobre Ruedas</h1>
+        <nav>
+            <a href="/">Inicio</a>
+            <a href="/mythcar">Catálogo</a>
+            <a href="/proyectos">Proyectos</a>
+            <a href="#">Asistencia Virtual</a>
+        </nav>
+    </header>
+    
     <div class="center">
+        <h1>Subir Proyecto</h1>
+        
         <form action="{{ url_for('upload') }}" enctype="multipart/form-data" method="POST">
             <!-- Campo para la imagen -->
-            <input type="file" name="pic" required />
+            <div class="file-upload-container">
+                <label for="pic" class="file-upload-label">Seleccionar archivo</label>
+                <input type="file" name="pic" id="pic" class="file-upload-input" required />
+            </div>
 
             <!-- Campos adicionales -->
             <label for="project_name">Nombre del Proyecto:</label>
@@ -36,10 +50,9 @@
 
         <!-- Botón para volver a proyectos -->
         <div class="highlight">
-            <a href="{{ url_for('proyectos') }}">
-                Volver a Proyectos
-            </a>
+            <a href="{{ url_for('proyectos') }}">Volver a Proyectos</a>
         </div>
     </div>
+
 </body>
 </html>

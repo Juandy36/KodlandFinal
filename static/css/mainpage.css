@@ -54,25 +54,6 @@ header nav a:hover {
 }
 
 .highlight a {
-    color: #f0a500; /* Naranja */
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s ease;
-}
-
-.highlight a:hover {
-    color: #ffffff; /* Blanco al pasar el mouse */
-}
-
-/* Listas */
-.highlight ul {
-    padding-left: 20px;
-}
-
-.highlight li {
-    margin-bottom: 10px;
-}
-.highlight a {
     width: 10em;
     position: relative;
     height: 3.5em;
@@ -85,9 +66,10 @@ header nav a:hover {
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
-  }
-  
-  .highlight a::after {
+    text-decoration-line: none;
+}
+
+.highlight a::after {
     content: "";
     position: absolute;
     top: -7px;
@@ -97,9 +79,9 @@ header nav a:hover {
     background-color: #2c2c2c;
     transition: 0.5s;
     transform-origin: center;
-  }
-  
-  .highlight a::before {
+}
+
+.highlight a::before {
     content: "";
     transform-origin: center;
     position: absolute;
@@ -109,15 +91,91 @@ header nav a:hover {
     height: 35%;
     background-color: #2c2c2c;
     transition: 0.5s;
-  }
-  
-  .highlight a:hover::before, button:hover::after {
-    transform: scale(0)
-  }
-  
-  .highlight a:hover {
+}
+
+.highlight a:hover::before, .highlight a:hover::after {
+    transform: scale(0);
+}
+
+.highlight a:hover {
     box-shadow: inset 0px 0px 25px #f0a500;
-  }
+}
+
+
+/* Contenedor de Proyectos Recientes */
+/* Contenedor de Proyectos */
+.projects-container {
+    display: flex; /* Alinea los proyectos en fila */
+    flex-wrap: wrap; /* Permite que los proyectos pasen a una nueva fila si no caben */
+    gap: 20px; /* Espacio entre cada tarjeta */
+    justify-content: center; /* Centra los proyectos horizontalmente */
+    padding: 20px 0;
+}
+
+.project-item {
+    background-color: #333333; /* Fondo oscuro */
+    padding: 15px;
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra ligera */
+    color: #eaeaea; /* Texto claro */
+    width: 300px; /* Ancho fijo para cada tarjeta */
+    text-align: center; /* Texto centrado */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-item img {
+    width: 100%; /* Imagen ocupa el ancho completo de la tarjeta */
+    height: 200px; /* Altura consistente */
+    object-fit: cover; /* Ajusta la imagen sin distorsión */
+    border-radius: 5px; /* Bordes redondeados para las imágenes */
+    margin-bottom: 10px;
+}
+
+.project-item h3 {
+    color: #f0a500; /* Títulos en naranja */
+    margin-bottom: 10px;
+}
+
+.project-item p {
+    margin: 5px 0; /* Espaciado entre detalles */
+}
+
+.project-item:hover {
+    transform: translateY(-5px); /* Efecto al pasar el mouse */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); /* Sombra más intensa */
+}
+
+/* Estilos FAQ*/
+
+/* Estilos FAQ */
+.faq {
+    background-color: #2c2c2c; /* Gris más claro para contraste */
+    margin: 20px 0;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    width: 100%; /* Aseguramos que ocupe todo el ancho disponible */
+    max-width: 1000px; /* Para limitar el tamaño máximo y evitar que se estire demasiado */
+    margin-left: auto;
+    margin-right: auto; /* Centra la sección */
+}
+
+.faq-item {
+    margin-bottom: 15px;
+    padding: 10px;
+    color: #eaeaea;
+    background-color: #333333; /* Fondo oscuro para los ítems */
+    border-radius: 8px; /* Bordes redondeados */
+}
+
+.faq-item h3 {
+    color: #f0a500;
+    margin-bottom: 5px;
+}
+
+.faq-item p {
+    margin: 0;
+}
 /* Footer */
 footer {
     background-color: #333333; /* Gris metálico oscuro */

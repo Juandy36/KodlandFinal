@@ -133,6 +133,7 @@ button:hover, input[type="submit"]:hover {
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
+    text-decoration-line: none;
 }
 
 .highlight a::after {
@@ -214,3 +215,4 @@ button:hover, input[type="submit"]:hover {
     color: #eaeaea;
     line-height: 1.5; /* Mejor legibilidad */
 }
+
