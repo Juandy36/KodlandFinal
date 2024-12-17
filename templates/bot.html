@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bot del Carro</title>
+    <link rel="stylesheet" href="static\css\bot.css">
+    <link rel="icon" href="static\img\Logo.ico">
+</head>
+<body>
+    <header>
+        <h1>Leyendas Sobre Ruedas</h1>
+        <nav>
+            <a href="/">Inicio</a>
+            <a href="/mythcar">Catálogo</a>
+            <a href="/proyectos">Proyectos</a>
+            <a href="/bot">Asistencia Virtual</a>
+        </nav>
+    </header>
+    <div class="container">
+        <h1>Asistente Virtual</h1>
+        <div id="chat-box">
+            <div id="messages"></div>  <!-- mensajes -->
+        </div>
+
+        <input type="text" id="user-message" placeholder="Escribe tu mensaje...">
+        <button onclick="enviarMensaje()">Enviar</button>
+    </div>
+
+    <script>
+        function enviarMensaje() {
+            let mensajeUsuario = document.getElementById('user-message').value;
+            if (mensajeUsuario.trim() === '') return;
+
+            // Mostrar mensaje del usuario en la pantalla
+            let divMensajeUsuario = document.createElement('div');
+            divMensajeUsuario.classList.add('user-message');
+            divMensajeUsuario.textContent = mensajeUsuario;
+            document.getElementById('messages').appendChild(divMensajeUsuario);
+
+            // Limpiar el input
+            document.getElementById('user-message').value = '';
+
+            // Enviar mensaje al backend
+            fetch('/enviar_mensaje', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ message: mensajeUsuario })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Mostrar respuesta del bot en la pantalla
+                let divRespuestaBot = document.createElement('div');
+                divRespuestaBot.classList.add('bot-message');
+                divRespuestaBot.textContent = data.response;
+                document.getElementById('messages').appendChild(divRespuestaBot);
+
+                // Desplazar la vista hacia abajo para ver el nuevo mensaje
+                document.getElementById('chat-box').scrollTop = document.getElementById('chat-box').scrollHeight;
+            });
+        }
+    </script>
+</body>
+</html>

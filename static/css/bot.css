@@ -1,0 +1,121 @@
+/* Estilos generales */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #1f1f1f; /* Gris oscuro como fondo */
+    color: #eaeaea; /* Blanco suave para el texto */
+}
+/* Encabezado */
+header {
+    background-color: #333333; /* Gris metálico oscuro */
+    color: #f0a500; /* Naranja para destacar el logo */
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.8em;
+}
+
+header nav a {
+    color: #f0a500; /* Naranja */
+    text-decoration: none;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+
+header nav a:hover {
+    color: #ffffff; /* Blanco al pasar el mouse */
+}
+
+
+/* Contenedor principal */
+.container {
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #333333; /* Fondo gris metálico oscuro */
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Encabezado */
+h1 {
+    text-align: center;
+    color: #f0a500; /* Naranja */
+    margin-bottom: 20px;
+}
+
+/* Chatbox */
+#chat-box {
+    height: 300px;
+    overflow-y: scroll;
+    background-color: #2c2c2c; /* Gris más claro para contraste */
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+#messages {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-message {
+    text-align: right;
+    background-color: #f0a500; /* Naranja */
+    color: white;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+.bot-message {
+    text-align: left;
+    background-color: #333333; /* Gris oscuro */
+    color: white;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+/* Input y botón */
+input[type="text"] {
+    width: calc(100% - 100px);
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 10px;
+    background-color: #f0a500;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 80px;
+    margin-left: 10px;
+}
+
+button:hover {
+    background-color: #e69300; /* Sombra más clara cuando pasa el mouse */
+}
+::-webkit-scrollbar{
+    width:10px;
+}
+::-webkit-scrollbar-track{
+    background-color: #333333;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb{
+    background-color: #e69300;
+    border-radius: 8px;
+    border: 3px solid #412900;
+}

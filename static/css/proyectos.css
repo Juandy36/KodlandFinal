@@ -216,3 +216,16 @@ button:hover, input[type="submit"]:hover {
     line-height: 1.5; /* Mejor legibilidad */
 }
 
+
+::-webkit-scrollbar{
+    width:10px;
+}
+::-webkit-scrollbar-track{
+    background-color: #333333;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb{
+    background-color: #e69300;
+    border-radius: 8px;
+    border: 3px solid #412900;
+}
