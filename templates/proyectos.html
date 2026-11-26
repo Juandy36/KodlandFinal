@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carros Miticos</title>
-    <link rel="stylesheet" href="static/css/proyectos.css">
-    <link rel="icon" href="static\img\Logo.ico">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/proyectos.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='img/Logo.ico') }}">
 </head>
 <body>
     <header>
@@ -14,7 +14,7 @@
             <a href="/">Inicio</a>
             <a href="/mythcar">Catálogo</a>
             <a href="/proyectos">Proyectos</a>
-            <a href="#">Asistencia Virtual</a>
+            <a href="/bot">Asistencia Virtual</a>
         </nav>
     </header>
 

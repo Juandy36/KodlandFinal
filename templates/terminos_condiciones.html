@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Términos y Condiciones</title>
-    <link rel="stylesheet" href="static/css/mainpage.css">
-    <link rel="icon" href="static\img\Logo.ico">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mainpage.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='img/Logo.ico') }}">
 </head>
 <body>
     <header>
@@ -14,7 +14,7 @@
             <a href="/">Inicio</a>
             <a href="/mythcar">Catálogo</a>
             <a href="/proyectos">Proyectos</a>
-            <a href="#">Asistencia Virtual</a>
+            <a href="/bot">Asistencia Virtual</a>
         </nav>
     </header>
 
@@ -47,7 +47,7 @@
     </div>
 
     <footer>
-        <p>Redes Sociales: <a href="https://www.instagram.com/leyendas.sobre.ruedas/">Instagram</a> | <a href="https://www.facebook.com/profile.php?id=61570013714619">Facebook</a> | <a href="#">Twitter</a></p>
+        <p>Redes Sociales: <a href="https://www.instagram.com/leyendas.sobre.ruedas/">Instagram</a> | <a href="https://www.facebook.com/profile.php?id=61570013714619">Facebook</a></p>
         <p>Contacto: soporte@leyendassobreruedas.com</p>
         <p><a href="/politica">Política de Privacidad</a></p>
     </footer>

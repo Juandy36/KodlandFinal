@@ -79,6 +79,7 @@ h1 {
     text-align: left;
     background-color: #333333; /* Gris oscuro */
     color: white;
+    white-space: pre-line; /* respeta los saltos de linea de la lista de comandos */
     padding: 8px;
     margin-bottom: 10px;
     border-radius: 10px;

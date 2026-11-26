@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bot del Carro</title>
-    <link rel="stylesheet" href="static\css\bot.css">
-    <link rel="icon" href="static\img\Logo.ico">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bot.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='img/Logo.ico') }}">
 </head>
 <body>
     <header>
@@ -28,39 +28,45 @@
     </div>
 
     <script>
+        function agregarMensaje(texto, clase) {
+            const div = document.createElement('div');
+            div.classList.add(clase);
+            div.textContent = texto;
+            document.getElementById('messages').appendChild(div);
+
+            // Desplazar la vista hacia abajo para ver el nuevo mensaje
+            const chatBox = document.getElementById('chat-box');
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
         function enviarMensaje() {
-            let mensajeUsuario = document.getElementById('user-message').value;
-            if (mensajeUsuario.trim() === '') return;
+            const input = document.getElementById('user-message');
+            const mensajeUsuario = input.value.trim();
+            if (mensajeUsuario === '') return;
 
-            // Mostrar mensaje del usuario en la pantalla
-            let divMensajeUsuario = document.createElement('div');
-            divMensajeUsuario.classList.add('user-message');
-            divMensajeUsuario.textContent = mensajeUsuario;
-            document.getElementById('messages').appendChild(divMensajeUsuario);
-
-            // Limpiar el input
-            document.getElementById('user-message').value = '';
+            agregarMensaje(mensajeUsuario, 'user-message');
+            input.value = '';
 
             // Enviar mensaje al backend
-            fetch('/enviar_mensaje', {
+            fetch("{{ url_for('enviar_mensaje') }}", {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ message: mensajeUsuario })
             })
-            .then(response => response.json())
-            .then(data => {
-                // Mostrar respuesta del bot en la pantalla
-                let divRespuestaBot = document.createElement('div');
-                divRespuestaBot.classList.add('bot-message');
-                divRespuestaBot.textContent = data.response;
-                document.getElementById('messages').appendChild(divRespuestaBot);
-
-                // Desplazar la vista hacia abajo para ver el nuevo mensaje
-                document.getElementById('chat-box').scrollTop = document.getElementById('chat-box').scrollHeight;
+            .then(response => response.json().then(data => ({ ok: response.ok, data })))
+            .then(({ ok, data }) => {
+                agregarMensaje(ok ? data.response : (data.error || 'Ocurrió un error.'), 'bot-message');
+            })
+            .catch(() => {
+                agregarMensaje('No se pudo contactar al asistente. Intenta de nuevo.', 'bot-message');
             });
         }
+
+        document.getElementById('user-message').addEventListener('keydown', function (evento) {
+            if (evento.key === 'Enter') {
+                enviarMensaje();
+            }
+        });
     </script>
 </body>
 </html>

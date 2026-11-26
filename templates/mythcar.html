@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carros</title>
-    <link rel="stylesheet" href="static\css\mythcar.css">
-    <link rel="icon" href="static\img\Logo.ico">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mythcar.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='img/Logo.ico') }}">
 </head>
 <body>
     <header>
@@ -14,7 +14,7 @@
             <a href="/">Inicio</a>
             <a href="/mythcar">Catálogo</a>
             <a href="/proyectos">Proyectos</a>
-            <a href="#">Asistencia Virtual</a>
+            <a href="/bot">Asistencia Virtual</a>
         </nav>
     </header>
 
@@ -25,8 +25,8 @@
     <div class="galery">
         <div class="car-container">
             <h1>VW Beetle</h1>
-            <img src="static\img\Vwbeetleantes.jfif" alt="beetle Antes"> 
-            <img src="static\img\beetleahora.jfif" alt="Beetle Ahora">
+            <img src="{{ url_for('static', filename='img/Vwbeetleantes.jfif') }}" alt="Beetle Antes">
+            <img src="{{ url_for('static', filename='img/beetleahora.jfif') }}" alt="Beetle Ahora">
             <p>
                 <strong>Vw beetle type 1</strong>
                 <br>
@@ -42,7 +42,7 @@
         
         <div class="car-container">
             <h1>Ferrari F40</h1>
-            <img src="static\img\f40.jfif" alt="F40">
+            <img src="{{ url_for('static', filename='img/f40.jfif') }}" alt="F40">
             <p>
                 <strong>Motor F40 diseñado por Enzo Ferrari</strong>
                 <br>
@@ -62,7 +62,7 @@
     
         <div class="car-container">
             <h1>Ford F150 Raptor</h1>
-            <img src="static\img\f150.jpg" alt="Raptor">
+            <img src="{{ url_for('static', filename='img/f150.jpg') }}" alt="Raptor">
             <p>
                 <strong>Motor F150 raptor 2025</strong>
                 <br>
@@ -80,8 +80,8 @@
     
         <div class="car-container">
             <h1>Dodge Charger</h1>
-            <img src="static\img\chargerantes.jfif" alt="Charger antes">
-            <img src="static\img\chargerahora.jfif" alt="Charger Ahora">
+            <img src="{{ url_for('static', filename='img/chargerantes.jfif') }}" alt="Charger antes">
+            <img src="{{ url_for('static', filename='img/chargerahora.jfif') }}" alt="Charger Ahora">
             <p>
                 <strong>Motor Charger Srt Hellcat</strong>
                 <br>
@@ -104,8 +104,8 @@
     
         <div class="car-container">
             <h1>Chevrolet Camaro</h1>
-            <img src="static\img\camarotransfomers.jpg" alt="Camaro de transformers">
-            <img src="static\img\camaroahora.jpeg" alt="Camaro ahora">
+            <img src="{{ url_for('static', filename='img/camarotransfomers.jpg') }}" alt="Camaro de transformers">
+            <img src="{{ url_for('static', filename='img/camaroahora.jpeg') }}" alt="Camaro ahora">
             <p>
                 <strong>Camaro Exorcist Zl1</strong>
                 <br>
@@ -121,8 +121,8 @@
     
         <div class="car-container">
             <h1>Ford Mustang</h1>
-            <img src="static\img\mustangantes.jpg" alt="Mustang clasico">
-            <img src="static\img\shelby.jpg" alt="gt500">
+            <img src="{{ url_for('static', filename='img/mustangantes.jpg') }}" alt="Mustang clasico">
+            <img src="{{ url_for('static', filename='img/shelby.jpg') }}" alt="gt500">
             <p>
                 <strong>Mustang Shelby GT500</strong>
                 <br>
@@ -140,7 +140,7 @@
     
         <div class="car-container">
             <h1>Ford GT40</h1>
-            <img src="static\img\gt40.jpg" alt="GT40">
+            <img src="{{ url_for('static', filename='img/gt40.jpg') }}" alt="GT40">
             <p>
                 <strong>GT40</strong>
                 <br>
@@ -169,7 +169,7 @@
 
         <div class="car-container">
             <h1>Audi R10</h1>
-            <img src="static\img\r10.jpg" alt="Audi r10 le mans">
+            <img src="{{ url_for('static', filename='img/r10.jpg') }}" alt="Audi r10 le mans">
             <p>
                 <strong>Audi R10 TDI</strong>
                 <br>
@@ -194,8 +194,8 @@
 
         <div class="car-container">
             <h1>ACURA NSX</h1>
-            <img src="static\img\nsxantes.jpg"  alt="Acura Antes">
-            <img src="static\img\nsxahora.jpg" alt="Acura Ahora">
+            <img src="{{ url_for('static', filename='img/nsxantes.jpg') }}" alt="Acura Antes">
+            <img src="{{ url_for('static', filename='img/nsxahora.jpg') }}" alt="Acura Ahora">
             <p>
                 <Strong>Acura NSX 1991</Strong>
                 <br>
@@ -207,7 +207,8 @@
                 <br>
                 Aceleración 0-100km/h: 5.9 s
                 <br>
-                Velocidad Maxima: 5.9 segundos
+                Velocidad Maxima: 270 km/h
+                <br>
                 <strong>Logros</strong>
                 <ul>
                     <li>24 Horas de le Mans, 1 victoria en su categoria</li>
@@ -217,7 +218,7 @@
 
         <div class="car-container">
             <h1>Chevrolet Corvette ZR1</h1>
-            <img src="static\img\zr1.jpg" alt="ZR1">
+            <img src="{{ url_for('static', filename='img/zr1.jpg') }}" alt="ZR1">
             <p>
                 <strong>ZR1</strong>
                 <br>
@@ -235,7 +236,7 @@
 
         <div class="car-container">
             <h1>Subaru Impreza WRX STI</h1>
-            <img src="static\img\subaru.jpg" alt="WRX">
+            <img src="{{ url_for('static', filename='img/subaru.jpg') }}" alt="WRX">
             <p>
                 <strong>WRX STI</strong>
                 <br>
@@ -260,7 +261,7 @@
 
         <div class="car-container">
             <h1>Koenigsegg Agera R.</h1>
-            <img src="static\img\Agerar.jpg" alt="Agera">
+            <img src="{{ url_for('static', filename='img/Agerar.jpg') }}" alt="Agera">
             <p>
                 <strong>Agera R</strong>
                 <br>
@@ -278,7 +279,7 @@
 
         <div class="car-container">
             <h1>McLaren MP4/4.</h1>
-            <img src="static\img\mp4-4senna.jpg" alt="Mclaren">
+            <img src="{{ url_for('static', filename='img/mp4-4senna.jpg') }}" alt="Mclaren">
             <p>
                 <strong>El Mclaren de Senna y Prost</strong>
                 <br>
@@ -301,7 +302,7 @@
 
         <div class="car-container">
             <h1>Nissan Skyline</h1>
-            <img src="static\img\skyline.jpg" alt="Skyline de brian">
+            <img src="{{ url_for('static', filename='img/skyline.jpg') }}" alt="Skyline de brian">
             <p>
                 <strong>Nissan Skyline Gt R34</strong>
                 <br>
