@@ -1,50 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carros Miticos</title>
-    <link rel="stylesheet" href="static/css/proyectos.css">
-    <link rel="icon" href="static\img\Logo.ico">
-</head>
-<body>
-    <header>
-        <h1>Leyendas Sobre Ruedas</h1>
-        <nav>
-            <a href="/">Inicio</a>
-            <a href="/mythcar">Catálogo</a>
-            <a href="/proyectos">Proyectos</a>
-            <a href="#">Asistencia Virtual</a>
-        </nav>
-    </header>
+{% extends "base.html" %}
+{% from "_macros.html" import icon, project_card %}
 
-    <h1>Sube tu proyecto!</h1>
+{% block title %}Proyectos{% endblock %}
+{% block description %}Galería de proyectos de la comunidad de Leyendas Sobre Ruedas.{% endblock %}
 
-    <div class="center">
-        <div class="highlight">
-            <a href="{{ url_for('upload_page') }}">
-                Subir un Proyecto
-            </a>
-        </div>
+{% block content %}
+<header class="page-header">
+  <div class="container">
+    <span class="eyebrow">Comunidad</span>
+    <h1>Proyectos de la comunidad</h1>
+    <p class="lead">Restauraciones, preparaciones y joyas de garaje compartidas por nuestros visitantes. ¡Sube tu proyecto!</p>
+    <div class="btn-group">
+      <a class="btn" href="{{ url_for('upload_page') }}">{{ icon("upload") }}<span>Subir un proyecto</span></a>
     </div>
+  </div>
+</header>
 
-    <h2>Proyectos:</h2>
-    <div class="card-container">
-        {% for image in images %}
-        <div class="card">
-            <!-- Imagen del proyecto -->
-            <img src="{{ url_for('get_img', id=image.id) }}" alt="{{ image.name }}">
-            
-            <!-- Información del proyecto -->
-            <div class="card-content">
-                <h3>{{ image.project_name }}</h3>
-                <p><strong>Motor:</strong> {{ image.motor }}</p>
-                <p><strong>Potencia:</strong> {{ image.power }}</p>
-                <p><strong>Aceleración:</strong> {{ image.acceleration }}</p>
-                <p><strong>Velocidad Máxima:</strong> {{ image.top_speed }}</p>
-            </div>
-        </div>
-        {% endfor %}
+<section class="section" aria-labelledby="galeria-title">
+  <div class="container">
+    <h2 id="galeria-title">Proyectos</h2>
+    {% if images %}
+    <div class="grid">
+      {% for image in images %}
+      {{ project_card(image, 3) }}
+      {% endfor %}
     </div>
-</body>
-</html>
+    {% else %}
+    <div class="empty-state">
+      {{ icon("garage") }}
+      <p>Aún no hay proyectos en la galería. Comparte el tuyo y aparecerá aquí.</p>
+      <a class="btn" href="{{ url_for('upload_page') }}">{{ icon("upload") }}<span>Subir un proyecto</span></a>
+    </div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,52 @@
+{#- Macros compartidos por las plantillas.
+    Uso: {% from "_macros.html" import icon, project_card %}
+    Los iconos son SVG inline decorativos: siempre van acompanados de texto
+    visible (o de un texto visually-hidden), por eso llevan aria-hidden. -#}
+
+{% macro icon(name, class="icon") -%}
+<svg class="{{ class }}" aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+{%- if name == "wheel" -%}
+<circle cx="12" cy="12" r="9.5"/><circle cx="12" cy="12" r="2.5"/><path d="M12 2.5v7M3.8 16.8l6-3.4M20.2 16.8l-6-3.4"/>
+{%- elif name == "menu" -%}
+<path d="M3 6h18M3 12h18M3 18h18"/>
+{%- elif name == "arrow-right" -%}
+<path d="M5 12h14M13 6l6 6-6 6"/>
+{%- elif name == "chevron-down" -%}
+<path d="m6 9 6 6 6-6"/>
+{%- elif name == "upload" -%}
+<path d="M12 15V3M7 8l5-5 5 5M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/>
+{%- elif name == "send" -%}
+<path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+{%- elif name == "chat" -%}
+<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+{%- elif name == "catalog" -%}
+<path d="M5 17h14M6 17l1.5-5h9l1.5 5M7.5 12 9 8h6l1.5 4"/><circle cx="7.5" cy="17.5" r="1.5"/><circle cx="16.5" cy="17.5" r="1.5"/>
+{%- elif name == "garage" -%}
+<path d="M3 21V9l9-6 9 6v12M7 21v-8h10v8M7 17h10"/>
+{%- elif name == "mail" -%}
+<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>
+{%- elif name == "instagram" -%}
+<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"/>
+{%- elif name == "facebook" -%}
+<path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+{%- elif name == "twitter" -%}
+<path d="M4 4h4.5L20 20h-4.5zM19.5 4l-6.6 7.3M4.5 20l6.6-7.3"/>
+{%- endif -%}
+</svg>
+{%- endmacro %}
+
+{#- Tarjeta de proyecto subido por la comunidad (portada y galeria). -#}
+{% macro project_card(project, level=3) -%}
+<article class="card">
+  <img class="card-media" src="{{ url_for('get_img', id=project.id) }}" alt="Foto del proyecto {{ project.project_name }}" loading="lazy" decoding="async">
+  <div class="card-body">
+    <h{{ level }} class="card-title">{{ project.project_name }}</h{{ level }}>
+    <dl class="specs">
+      <div><dt>Motor</dt><dd>{{ project.motor }}</dd></div>
+      <div><dt>Potencia</dt><dd>{{ project.power }}</dd></div>
+      <div><dt>0-100 km/h</dt><dd>{{ project.acceleration }}</dd></div>
+      <div><dt>Velocidad máxima</dt><dd>{{ project.top_speed }}</dd></div>
+    </dl>
+  </div>
+</article>
+{%- endmacro %}

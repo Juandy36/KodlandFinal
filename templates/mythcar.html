@@ -1,323 +1,265 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carros</title>
-    <link rel="stylesheet" href="static\css\mythcar.css">
-    <link rel="icon" href="static\img\Logo.ico">
-</head>
-<body>
-    <header>
-        <h1>Leyendas Sobre Ruedas</h1>
-        <nav>
-            <a href="/">Inicio</a>
-            <a href="/mythcar">Catálogo</a>
-            <a href="/proyectos">Proyectos</a>
-            <a href="#">Asistencia Virtual</a>
-        </nav>
-    </header>
+{% extends "base.html" %}
 
-    <div class="description">
-        <p>Bienvenidos al lugar donde los autos más legendarios y míticos cobran vida. A lo largo de la historia, ciertos coches han dejado una huella imborrable en el mundo de la automoción, ya sea por su diseño revolucionario, sus impresionantes victorias en competiciones o sus innovadoras configuraciones técnicas. En este espacio, exploramos cada uno de estos modelos, analizando su evolución, los desafíos que enfrentaron y cómo se convirtieron en verdaderas leyendas sobre ruedas. Además, profundizamos en sus especificaciones técnicas, sus logros más destacados y las historias que los convirtieron en íconos de la mecánica. Únete a nosotros y revive la emoción de estos vehículos que han marcado un antes y un después en el mundo del motor.</p>
+{% block title %}Catálogo{% endblock %}
+{% block description %}Catálogo de autos legendarios y míticos: especificaciones técnicas, logros y su evolución en el tiempo.{% endblock %}
+
+{#- Datos del catalogo. Cada auto: id (ancla), name, subtitle,
+    images [(archivo, texto alternativo, leyenda)], specs [(etiqueta, valor)],
+    achievements_title y achievements (opcionales). -#}
+{% set cars = [
+  {
+    "id": "vw-beetle", "name": "VW Beetle", "subtitle": "Volkswagen Beetle Type 1",
+    "images": [
+      ("Vwbeetleantes.jfif", "Volkswagen Beetle Type 1 clásico", "Antes"),
+      ("beetleahora.jfif", "Volkswagen Beetle de generación reciente", "Ahora")
+    ],
+    "specs": [
+      ("Tipo de motor", "Motor bóxer (flat-four), refrigerado por aire"),
+      ("Cilindrada", "1.1 L (1,100 cc)"),
+      ("Potencia", "Aproximadamente 25 hp (caballos de fuerza) en los primeros modelos"),
+      ("Torque máximo", "78 Nm (58 lb-ft) a 2,200 rpm")
+    ]
+  },
+  {
+    "id": "ferrari-f40", "name": "Ferrari F40", "subtitle": "Motor F40 diseñado por Enzo Ferrari",
+    "images": [("f40.jfif", "Ferrari F40", "")],
+    "specs": [
+      ("Motor", "V8 de 2.936 cc, tipo F120 A Biturbo"),
+      ("Potencia", "478 CV (471 HP; 352 kW)"),
+      ("Par motor", "577 N·m (426 lb·pie)"),
+      ("Velocidad máxima", "324 km/h"),
+      ("Aceleración 0-100 km/h", "4,1 segundos"),
+      ("Peso", "1.100 kg")
+    ]
+  },
+  {
+    "id": "ford-f150-raptor", "name": "Ford F150 Raptor", "subtitle": "Motor F150 Raptor 2025",
+    "images": [("f150.jpg", "Camioneta Ford F-150 Raptor", "")],
+    "specs": [
+      ("Motor", "3.5L Bi-Turbo V6"),
+      ("Potencia", "450 Hp, 510 lb-pie"),
+      ("Velocidad máxima", "250 km/h"),
+      ("Aceleración 0-100 km/h", "4.0 segundos"),
+      ("Peso", "3244 kg")
+    ]
+  },
+  {
+    "id": "dodge-charger", "name": "Dodge Charger", "subtitle": "Motor Charger SRT Hellcat",
+    "images": [
+      ("chargerantes.jfif", "Dodge Charger clásico", "Antes"),
+      ("chargerahora.jfif", "Dodge Charger SRT Hellcat moderno", "Ahora")
+    ],
+    "specs": [
+      ("Motor", "Supercargado HEMI® V8 de 6.2L"),
+      ("Potencia", "797 HP"),
+      ("Aceleración 0-100 km/h", "3,6 segundos"),
+      ("Velocidad máxima", "326 km/h")
+    ],
+    "achievements": ["1970 NASCAR, Ganador", "NASCAR Modifieds, Podios", "Drag Racing, Podios"]
+  },
+  {
+    "id": "chevrolet-camaro", "name": "Chevrolet Camaro", "subtitle": "Camaro Exorcist ZL1",
+    "images": [
+      ("camarotransfomers.jpg", "Chevrolet Camaro usado en la película Transformers", "Antes"),
+      ("camaroahora.jpeg", "Chevrolet Camaro Exorcist ZL1 actual", "Ahora")
+    ],
+    "specs": [
+      ("Motor", "6.2L supercargado V8"),
+      ("Potencia", "1013 HP"),
+      ("Aceleración 0-100 km/h", "2.7 segundos"),
+      ("Velocidad máxima", "349 km/h")
+    ]
+  },
+  {
+    "id": "ford-mustang", "name": "Ford Mustang", "subtitle": "Mustang Shelby GT500",
+    "images": [
+      ("mustangantes.jpg", "Ford Mustang clásico", "Antes"),
+      ("shelby.jpg", "Ford Mustang Shelby GT500 moderno", "Ahora")
+    ],
+    "specs": [
+      ("Motor", "5.2L supercargado V8"),
+      ("Potencia", "760 HP"),
+      ("Torque", "625 lb-pie a 5,000 rpm"),
+      ("Aceleración 0-100 km/h", "3.5 segundos"),
+      ("Velocidad máxima", "325 km/h")
+    ]
+  },
+  {
+    "id": "ford-gt40", "name": "Ford GT40", "subtitle": "GT40",
+    "images": [("gt40.jpg", "Ford GT40 de competición", "")],
+    "specs": [
+      ("Motor", "V8 de 5.4 litros"),
+      ("Potencia", "550 hp"),
+      ("Aceleración 0-100 km/h", "7.8 segundos"),
+      ("Velocidad máxima", "348 km/h")
+    ],
+    "achievements": [
+      "24 Horas de Le Mans, 4 campeonatos seguidos",
+      "12 Horas de Sebring, 2 victorias",
+      "1000 km de Monza, 1 victoria",
+      "1000 km de Spa, 1 victoria",
+      "6 Horas de Watkins Glen, 1 victoria",
+      "1000 km de Brands Hatch, 1 victoria",
+      "24 Horas de Daytona, 1 victoria",
+      "2000 km de Daytona, 1 victoria"
+    ]
+  },
+  {
+    "id": "audi-r10", "name": "Audi R10", "subtitle": "Audi R10 TDI",
+    "images": [("r10.jpg", "Audi R10 TDI de las 24 Horas de Le Mans", "")],
+    "specs": [
+      ("Motor", "5,5 L V12"),
+      ("Potencia", "659 HP"),
+      ("Torque", "1100 Nm"),
+      ("Aceleración 0-100 km/h", "3.4 segundos"),
+      ("Velocidad máxima", "+300 km/h")
+    ],
+    "achievements": ["24 Horas de Le Mans, 3 victorias consecutivas"]
+  },
+  {
+    "id": "acura-nsx", "name": "Acura NSX", "subtitle": "Acura NSX 1991",
+    "images": [
+      ("nsxantes.jpg", "Acura NSX de primera generación", "Antes"),
+      ("nsxahora.jpg", "Acura NSX de generación actual", "Ahora")
+    ],
+    "specs": [
+      ("Motor", "3.0 L V6"),
+      ("Potencia", "266 HP"),
+      ("Torque", "285 Nm"),
+      ("Aceleración 0-100 km/h", "5.9 s"),
+      ("Velocidad máxima", "5.9 segundos")
+    ],
+    "achievements": ["24 Horas de Le Mans, 1 victoria en su categoría"]
+  },
+  {
+    "id": "corvette-zr1", "name": "Chevrolet Corvette ZR1", "subtitle": "ZR1",
+    "images": [("zr1.jpg", "Chevrolet Corvette ZR1", "")],
+    "specs": [
+      ("Motor", "Biturbo V8 de 5.5 L"),
+      ("Potencia", "1.064 HP"),
+      ("Torque", "828 lb-pie"),
+      ("Aceleración 0-100 km/h", "2.9 segundos"),
+      ("Velocidad máxima", "375 km/h")
+    ]
+  },
+  {
+    "id": "subaru-wrx-sti", "name": "Subaru Impreza WRX STI", "subtitle": "WRX STI",
+    "images": [("subaru.jpg", "Subaru Impreza WRX STI", "")],
+    "specs": [
+      ("Motor", "2.5 L Bóxer 4 cilindros turbo"),
+      ("Potencia", "300 HP"),
+      ("Torque", "407 Nm"),
+      ("Aceleración 0-100 km/h", "5,2 segundos"),
+      ("Velocidad máxima", "255 km/h")
+    ],
+    "achievements": ["Campeonato Mundial de Rally, 35 victorias y tres campeonatos"]
+  },
+  {
+    "id": "koenigsegg-agera-r", "name": "Koenigsegg Agera R", "subtitle": "Agera R",
+    "images": [("Agerar.jpg", "Koenigsegg Agera R", "")],
+    "specs": [
+      ("Motor", "V8 biturbo de 5.0 litros"),
+      ("Potencia", "1.444 Hp"),
+      ("Torque", "1.280 Nm"),
+      ("Aceleración 0-100 km/h", "2.8 segundos"),
+      ("Velocidad máxima", "447 km/h")
+    ]
+  },
+  {
+    "id": "mclaren-mp4-4", "name": "McLaren MP4/4", "subtitle": "El McLaren de Senna y Prost",
+    "images": [("mp4-4senna.jpg", "McLaren MP4/4 de Fórmula 1 pilotado por Ayrton Senna", "")],
+    "specs": [
+      ("Motor", "Honda RA168E 1.5 V6 turbo")
+    ],
+    "achievements_title": "Logros temporada 88",
+    "achievements": [
+      "15 victorias en 16 carreras.",
+      "15 pole positions.",
+      "8 vueltas rápidas.",
+      "10 dobletes.",
+      "25 podios de 32 posibles.",
+      "199 puntos de 240 posibles.",
+      "Campeón del Campeonato de Constructores.",
+      "Superó al segundo lugar (Ferrari) por 134 puntos."
+    ]
+  },
+  {
+    "id": "nissan-skyline", "name": "Nissan Skyline", "subtitle": "Nissan Skyline GT-R R34",
+    "images": [("skyline.jpg", "Nissan Skyline GT-R R34 de Brian en la saga Rápido y Furioso", "")],
+    "specs": [
+      ("Motor", "RB26DETT turbo doble L6"),
+      ("Potencia", "276 HP"),
+      ("Torque", "289 lb-pie"),
+      ("Aceleración 0-100 km/h", "5.4 segundos"),
+      ("Velocidad máxima", "268 km/h")
+    ]
+  }
+] %}
+
+{% block content %}
+<header class="page-header">
+  <div class="container">
+    <span class="eyebrow">Catálogo</span>
+    <h1>Autos legendarios y míticos</h1>
+    <p class="lead">Bienvenidos al lugar donde los autos más legendarios y míticos cobran vida. A lo largo de la historia, ciertos coches han dejado una huella imborrable en el mundo de la automoción, ya sea por su diseño revolucionario, sus impresionantes victorias en competiciones o sus innovadoras configuraciones técnicas.</p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
+    <div class="prose">
+      <p>En este espacio, exploramos cada uno de estos modelos, analizando su evolución, los desafíos que enfrentaron y cómo se convirtieron en verdaderas leyendas sobre ruedas. Además, profundizamos en sus especificaciones técnicas, sus logros más destacados y las historias que los convirtieron en íconos de la mecánica. Únete a nosotros y revive la emoción de estos vehículos que han marcado un antes y un después en el mundo del motor.</p>
     </div>
 
-    <div class="galery">
-        <div class="car-container">
-            <h1>VW Beetle</h1>
-            <img src="static\img\Vwbeetleantes.jfif" alt="beetle Antes"> 
-            <img src="static\img\beetleahora.jfif" alt="Beetle Ahora">
-            <p>
-                <strong>Vw beetle type 1</strong>
-                <br>
-                Tipo de motor: Motor bóxer (flat-four), refrigerado por aire.
-                <br>
-                Cilindrada: 1.1 L (1,100 cc)
-                <br>
-                Potencia: Aproximadamente 25 hp (caballos de fuerza) en los primeros modelos.
-                <br>
-                Torque máximo: 78 Nm (58 lb-ft) a 2,200 rpm.
-            </p>
-        </div>
-        
-        <div class="car-container">
-            <h1>Ferrari F40</h1>
-            <img src="static\img\f40.jfif" alt="F40">
-            <p>
-                <strong>Motor F40 diseñado por Enzo Ferrari</strong>
-                <br>
-                Motor: V8 de 2.936 cc, tipo F120 A Biturbo 
-                <br>
-                Potencia: 478 CV (471 HP; 352 kW) 
-                <br>
-                Par motor: 577 N·m (426 lb·pie) 
-                <br>
-                Velocidad máxima: 324 km/h 
-                <br>
-                Aceleración de 0 a 100 km/h: 4,1 segundos 
-                <br>
-                Peso: 1.100 kg
-            </p>
-        </div>
-    
-        <div class="car-container">
-            <h1>Ford F150 Raptor</h1>
-            <img src="static\img\f150.jpg" alt="Raptor">
-            <p>
-                <strong>Motor F150 raptor 2025</strong>
-                <br>
-                Motor: 3.5L Bi-Turbo V6. 
-                <br>
-                Potencia: 450Hp, 510 Lb-pie
-                <br>
-                Velocidad máxima: 250 km/h 
-                <br>
-                Aceleración de 0 a 100 km/h: 4.0 segundos
-                <br>
-                Peso: 3244 kg
-            </p>
-        </div>
-    
-        <div class="car-container">
-            <h1>Dodge Charger</h1>
-            <img src="static\img\chargerantes.jfif" alt="Charger antes">
-            <img src="static\img\chargerahora.jfif" alt="Charger Ahora">
-            <p>
-                <strong>Motor Charger Srt Hellcat</strong>
-                <br>
-                Motor: Supercargado HEMI® V8 de 6.2L
-                <br>
-                Potencia: 797 HP
-                <br>
-                Aceleración 0-100km/h: 3,6 segundos
-                <br>
-                Velocidad máxima: 326 km/h
-                <br>
-                <strong>Logros</strong>
-                <ul>
-                    <li>1970 NASCAR, Ganador</li>
-                    <li>NASCAR Modifieds, Podios</li>
-                    <li>Drag Racing, Podios</li>
-                </ul>
-            </p>
-        </div>
-    
-        <div class="car-container">
-            <h1>Chevrolet Camaro</h1>
-            <img src="static\img\camarotransfomers.jpg" alt="Camaro de transformers">
-            <img src="static\img\camaroahora.jpeg" alt="Camaro ahora">
-            <p>
-                <strong>Camaro Exorcist Zl1</strong>
-                <br>
-                Motor: 6.2L supercargado V8
-                <br>
-                Potencia: 1013 HP
-                <br>
-                Aceleración 0-100km/h: 2.7 segundos
-                <br>
-                Velocidad Maxima: 349 km/h
-            </p>
-        </div>
-    
-        <div class="car-container">
-            <h1>Ford Mustang</h1>
-            <img src="static\img\mustangantes.jpg" alt="Mustang clasico">
-            <img src="static\img\shelby.jpg" alt="gt500">
-            <p>
-                <strong>Mustang Shelby GT500</strong>
-                <br>
-                Motor: 5.2L supercargado V8
-                <br>
-                Potencia: 760 HP
-                <br>
-                Torque: 625 lb-pie a 5,000 rpm
-                <br>
-                Aceleración 0-100km/h: 3.5 segundos
-                <br>
-                Velocidad máxima: 325 km/h
-            </p>
-        </div>
-    
-        <div class="car-container">
-            <h1>Ford GT40</h1>
-            <img src="static\img\gt40.jpg" alt="GT40">
-            <p>
-                <strong>GT40</strong>
-                <br>
-                Motor: V8 de 5.4 litros
-                <br>
-                Potencia: 550 hp
-                <br>
-                Aceleración 0-100km/h: 7.8 segundos
-                <br>
-                Velocidad Maxima: 348 km/h
-                <br>
-                <strong>LOGROS</strong>
-                <ul>
-                    <li>24 Horas de Le Mans, 4 campeonatos seguidos</li>
-                    <li>12 Horas de Sebring, 2 victorias</li>
-                    <li>1000 km de Monza, 1 victoria</li>
-                    <li>1000 km de Spa, 1 victoria</li>
-                    <li>6 Horas de Watkins Glen, 1 victoria</li>
-                    <li>1000 km de Brands Hatch, 1 victoria</li>
-                    <li>24 Horas de Daytona, 1 victoria</li>
-                    <li>2000 km de Daytona, 1 victoria</li>
-                </ul>
-            </p>
+    <nav class="section" aria-label="Modelos del catálogo">
+      <ul class="car-index">
+        {%- for car in cars %}
+        <li><a href="#{{ car.id }}">{{ car.name }}</a></li>
+        {%- endfor %}
+      </ul>
+    </nav>
 
+    <div class="car-list">
+      {% for car in cars %}
+      <article class="car" id="{{ car.id }}" aria-labelledby="{{ car.id }}-title">
+        <div class="car-header">
+          <h2 id="{{ car.id }}-title">{{ car.name }}</h2>
+          <p class="car-subtitle">{{ car.subtitle }}</p>
         </div>
 
-        <div class="car-container">
-            <h1>Audi R10</h1>
-            <img src="static\img\r10.jpg" alt="Audi r10 le mans">
-            <p>
-                <strong>Audi R10 TDI</strong>
-                <br>
-                Motor: 5,5 L V12 
-                <br>
-                Potencia: 659 HP
-                <br>
-                Torque: 1100 Nm
-                <br>
-                Aceleración 0-100km/H: 3.4 segundos
-                <br>
-                Velocidad Maxima: +300 km/h
-                <br>
-                <strong>Logros</strong>
-                <ul>
-                    <li>
-                        24 Horas de Le Mans, 3 victorias consecutivas
-                    </li>
-                </ul>
-            </p>
+        <div class="car-gallery{% if car.images|length > 1 %} car-gallery--pair{% endif %}">
+          {% for file, alt, caption in car.images %}
+          <figure class="car-figure">
+            <img src="{{ url_for('static', filename='img/' ~ file) }}" alt="{{ alt }}" loading="lazy" decoding="async">
+            {% if caption %}<figcaption>{{ caption }}</figcaption>{% endif %}
+          </figure>
+          {% endfor %}
         </div>
 
-        <div class="car-container">
-            <h1>ACURA NSX</h1>
-            <img src="static\img\nsxantes.jpg"  alt="Acura Antes">
-            <img src="static\img\nsxahora.jpg" alt="Acura Ahora">
-            <p>
-                <Strong>Acura NSX 1991</Strong>
-                <br>
-                Motor: 3.0 L  V6
-                <br>
-                Potencia: 266 HP
-                <br>
-                Torque: 285Nm
-                <br>
-                Aceleración 0-100km/h: 5.9 s
-                <br>
-                Velocidad Maxima: 5.9 segundos
-                <strong>Logros</strong>
-                <ul>
-                    <li>24 Horas de le Mans, 1 victoria en su categoria</li>
-                </ul>
-            </p>
+        <div class="car-body">
+          <div>
+            <h3>Especificaciones</h3>
+            <dl class="specs">
+              {%- for label, value in car.specs %}
+              <div><dt>{{ label }}</dt><dd>{{ value }}</dd></div>
+              {%- endfor %}
+            </dl>
+          </div>
+
+          {% if car.achievements %}
+          <div>
+            <h3>{{ car.achievements_title or "Logros" }}</h3>
+            <ul class="achievements">
+              {%- for item in car.achievements %}
+              <li>{{ item }}</li>
+              {%- endfor %}
+            </ul>
+          </div>
+          {% endif %}
         </div>
-
-        <div class="car-container">
-            <h1>Chevrolet Corvette ZR1</h1>
-            <img src="static\img\zr1.jpg" alt="ZR1">
-            <p>
-                <strong>ZR1</strong>
-                <br>
-                Motor: biturbo V8 de 5.5 L 
-                <br>
-                Potencia: 1.064 HP
-                <br>
-                Torque: 828 Pie-Lb
-                <br>
-                Aceleración 0-100Km/H:  2.9 segundos
-                <br>
-                Velocidad Maxima: 375 km/h
-            </p>
-        </div>
-
-        <div class="car-container">
-            <h1>Subaru Impreza WRX STI</h1>
-            <img src="static\img\subaru.jpg" alt="WRX">
-            <p>
-                <strong>WRX STI</strong>
-                <br>
-                Motor: 2.5 L  Boxer 4 cilindros turbo
-                <br>
-                Potencia: 300 HP
-                <br>
-                Torque: 407 Nm
-                <br>
-                Aceleración 0-100km/h: 5,2 segundos
-                <br>
-                Velocidad Maxima: 255 km/h
-
-                <br>
-                <strong>Logros</strong>
-                <ul>
-                    <li>Campeonato Mundial de Rally, 35 victorias y tres campeonatos</li>
-                </ul>
-            </p>
-
-        </div>
-
-        <div class="car-container">
-            <h1>Koenigsegg Agera R.</h1>
-            <img src="static\img\Agerar.jpg" alt="Agera">
-            <p>
-                <strong>Agera R</strong>
-                <br>
-               Motor: V8 biturbo de 5.0 litros
-                <br>
-                Potencia: 1.444 Hp
-                <br>
-                Torque: 1.280 Nm
-                <br>
-                Aceleración 0-100km/h: 2.8 segundos
-                <br>
-                Velocidad Maxima: 447 km/h
-            </p>
-        </div>
-
-        <div class="car-container">
-            <h1>McLaren MP4/4.</h1>
-            <img src="static\img\mp4-4senna.jpg" alt="Mclaren">
-            <p>
-                <strong>El Mclaren de Senna y Prost</strong>
-                <br>
-                Motor:Honda RA168E 1.5 V6 turbo
-                <br>
-
-                <strong>Logros temporada 88</strong>
-                <ul>
-                    <li>15 victorias en 16 carreras.</li>
-                    <li>15 pole positions.</li>
-                    <li>8 vueltas rápidas.</li>
-                    <li>10 dobletes.</li>
-                    <li>25 podios de 32 posibles.</li>
-                    <li>199 puntos de 240 posibles.</li>
-                    <li>Campeón del Campeonato de Constructores.</li>
-                    <li>Superó al segundo lugar (Ferrari) por 134 puntos.</li>
-                </ul>
-            </p>
-        </div>
-
-        <div class="car-container">
-            <h1>Nissan Skyline</h1>
-            <img src="static\img\skyline.jpg" alt="Skyline de brian">
-            <p>
-                <strong>Nissan Skyline Gt R34</strong>
-                <br>
-                Motor: RB26DETT turbo doble l6
-                <br>
-                Potencia: 276 HP
-                <br>
-                Torque: 289 lb-pie
-                <br>
-                Aceleración 0-100Km/h: 5.4 segundos
-                <br>
-                Velocidad Maxima: 268 km/h
-            </p>
-        </div>
-
+      </article>
+      {% endfor %}
     </div>
-    
-</body>
-</html>
+  </div>
+</section>
+{% endblock %}
