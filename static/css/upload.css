@@ -201,3 +201,14 @@ header nav a:hover {
     border-radius: 8px;
     border: 3px solid #412900;
 }
+
+/* Mensajes de error del formulario */
+.form-errors {
+    max-width: 500px;
+    margin: 0 auto 20px;
+    padding: 10px 20px 10px 35px;
+    background-color: #4a1c1c;
+    border: 1px solid #c0392b;
+    border-radius: 8px;
+    color: #ffb3b3;
+}
