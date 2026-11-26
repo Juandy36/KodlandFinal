@@ -14,7 +14,7 @@
             <a href="/">Inicio</a>
             <a href="/mythcar">Catálogo</a>
             <a href="/proyectos">Proyectos</a>
-            <a href="#">Asistencia Virtual</a>
+            <a href="/bot">Asistencia Virtual</a>
         </nav>
     </header>
 
@@ -22,7 +22,7 @@
 
     <div class="center">
         <div class="highlight">
-            <a href="{{ url_for('upload_page') }}">
+            <a href="{{ url_for('projects.upload_page') }}">
                 Subir un Proyecto
             </a>
         </div>
@@ -33,7 +33,7 @@
         {% for image in images %}
         <div class="card">
             <!-- Imagen del proyecto -->
-            <img src="{{ url_for('get_img', id=image.id) }}" alt="{{ image.name }}">
+            <img src="{{ url_for('projects.get_img', id=image.id) }}" alt="{{ image.name }}">
             
             <!-- Información del proyecto -->
             <div class="card-content">

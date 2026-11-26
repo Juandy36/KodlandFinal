@@ -15,35 +15,43 @@
             <a href="/">Inicio</a>
             <a href="/mythcar">Catálogo</a>
             <a href="/proyectos">Proyectos</a>
-            <a href="#">Asistencia Virtual</a>
+            <a href="/bot">Asistencia Virtual</a>
         </nav>
     </header>
-    
+
     <div class="center">
         <h1>Subir Proyecto</h1>
-        
-        <form action="{{ url_for('upload') }}" enctype="multipart/form-data" method="POST">
+
+        {% if errors %}
+        <ul class="form-errors" role="alert">
+            {% for error in errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        <form action="{{ url_for('projects.upload') }}" enctype="multipart/form-data" method="POST">
             <!-- Campo para la imagen -->
             <div class="file-upload-container">
                 <label for="pic" class="file-upload-label">Seleccionar archivo</label>
-                <input type="file" name="pic" id="pic" class="file-upload-input" required />
+                <input type="file" name="pic" id="pic" class="file-upload-input" accept="{{ accept }}" required />
             </div>
 
             <!-- Campos adicionales -->
             <label for="project_name">Nombre del Proyecto:</label>
-            <input type="text" id="project_name" name="project_name" placeholder="Ej: McLaren MP4/4" required />
+            <input type="text" id="project_name" name="project_name" placeholder="Ej: McLaren MP4/4" maxlength="100" value="{{ form.get('project_name', '') }}" required />
 
             <label for="motor">Motor:</label>
-            <input type="text" id="motor" name="motor" placeholder="Ej: V6 Biturbo 4.5L" required />
+            <input type="text" id="motor" name="motor" placeholder="Ej: V6 Biturbo 4.5L" maxlength="100" value="{{ form.get('motor', '') }}" required />
 
             <label for="power">Potencia:</label>
-            <input type="text" id="power" name="power" placeholder="Ej: 450 hp, 510 Nm" required />
+            <input type="text" id="power" name="power" placeholder="Ej: 450 hp, 510 Nm" maxlength="100" value="{{ form.get('power', '') }}" required />
 
             <label for="acceleration">0-100Km/h:</label>
-            <input type="text" id="acceleration" name="acceleration" placeholder="Ej: 2.4 segundos" required />
+            <input type="text" id="acceleration" name="acceleration" placeholder="Ej: 2.4 segundos" maxlength="100" value="{{ form.get('acceleration', '') }}" required />
 
             <label for="top_speed">Velocidad Máxima:</label>
-            <input type="text" id="top_speed" name="top_speed" placeholder="Ej: 321 km/h" required />
+            <input type="text" id="top_speed" name="top_speed" placeholder="Ej: 321 km/h" maxlength="100" value="{{ form.get('top_speed', '') }}" required />
 
             <!-- Botón para subir el proyecto -->
             <input type="submit" value="Subir Proyecto" />
@@ -51,7 +59,7 @@
 
         <!-- Botón para volver a proyectos -->
         <div class="highlight">
-            <a href="{{ url_for('proyectos') }}">Volver a Proyectos</a>
+            <a href="{{ url_for('projects.proyectos') }}">Volver a Proyectos</a>
         </div>
     </div>
 

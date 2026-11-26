@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error {{ code }} - Leyendas Sobre Ruedas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mainpage.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='img/Logo.ico') }}">
+</head>
+<body>
+    <header>
+        <h1>Leyendas Sobre Ruedas</h1>
+        <nav>
+            <a href="/">Inicio</a>
+            <a href="/mythcar">Catálogo</a>
+            <a href="/proyectos">Proyectos</a>
+            <a href="/bot">Asistencia Virtual</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <section class="highlight">
+            <h2>Error {{ code }}</h2>
+            <p>{{ message }}</p>
+            <a href="/">Volver al inicio</a>
+        </section>
+    </div>
+</body>
+</html>

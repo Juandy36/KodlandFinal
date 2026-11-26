@@ -31,7 +31,7 @@
                 {% for project in latest_projects %}
                 <div class="project-item">
                     <h3>{{ project.project_name }}</h3>
-                    <img src="{{ url_for('get_img', id=project.id) }}" alt="{{ project.project_name }}">
+                    <img src="{{ url_for('projects.get_img', id=project.id) }}" alt="{{ project.project_name }}">
                     <p><strong>Motor:</strong> {{ project.motor }}</p>
                     <p><strong>Potencia:</strong> {{ project.power }}</p>
                     <p><strong>Velocidad Máxima:</strong> {{ project.top_speed }}</p>
@@ -45,7 +45,7 @@
         <section class="highlight">
             <h2>Únete a la Comunidad</h2>
             <p>¿Tienes un proyecto único? Súbelo a nuestra galería y comparte tu pasión con el mundo.</p>
-            <a href="{{ url_for('upload_page') }}">Sube tu Proyecto Ahora</a>
+            <a href="{{ url_for('projects.upload_page') }}">Sube tu Proyecto Ahora</a>
         </section>
     </div>
 
