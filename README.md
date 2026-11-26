@@ -8,3 +8,10 @@ Pagina dedicada a lo automotriz
 ## -redirect: Redirigir al usuario a otra página o ruta.
 ## -Flask: Crear la aplicación web y manejar rutas.
 ## -Flask-SQLAlchemy: Conectar y manejar la base de datos SQLite.
+
+## Contribuir
+
+Por ahora solo **juandy** tiene permiso para hacer commits en este repositorio.
+
+- Los cambios entran por Pull Request y juandy los revisa antes de fusionarlos a `main`.
+- Si quieres proponer algo y no tienes permisos, abre un issue o un PR desde tu fork.
