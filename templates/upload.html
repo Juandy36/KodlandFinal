@@ -1,59 +1,63 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Subir Proyecto</title>
-    <link rel="stylesheet" href="static/css/upload.css">
-    <link rel="icon" href="static\img\Logo.ico">
-</head>
-<body>
+{% extends "base.html" %}
+{% from "_macros.html" import icon %}
 
-    <header>
-        <h1>Leyendas Sobre Ruedas</h1>
-        <nav>
-            <a href="/">Inicio</a>
-            <a href="/mythcar">Catálogo</a>
-            <a href="/proyectos">Proyectos</a>
-            <a href="#">Asistencia Virtual</a>
-        </nav>
-    </header>
-    
-    <div class="center">
-        <h1>Subir Proyecto</h1>
-        
-        <form action="{{ url_for('upload') }}" enctype="multipart/form-data" method="POST">
-            <!-- Campo para la imagen -->
-            <div class="file-upload-container">
-                <label for="pic" class="file-upload-label">Seleccionar archivo</label>
-                <input type="file" name="pic" id="pic" class="file-upload-input" required />
-            </div>
+{% block title %}Subir proyecto{% endblock %}
+{% block description %}Comparte tu proyecto automotriz con la comunidad de Leyendas Sobre Ruedas.{% endblock %}
 
-            <!-- Campos adicionales -->
-            <label for="project_name">Nombre del Proyecto:</label>
-            <input type="text" id="project_name" name="project_name" placeholder="Ej: McLaren MP4/4" required />
+{% block content %}
+<header class="page-header">
+  <div class="container">
+    <span class="eyebrow">Comunidad</span>
+    <h1>Subir proyecto</h1>
+    <p class="lead">Comparte tu auto con la comunidad: añade una foto y sus datos principales.</p>
+  </div>
+</header>
 
-            <label for="motor">Motor:</label>
-            <input type="text" id="motor" name="motor" placeholder="Ej: V6 Biturbo 4.5L" required />
+<section class="section">
+  <div class="container">
+    <div class="form-card">
+      <form class="form" action="{{ url_for('upload') }}" enctype="multipart/form-data" method="POST">
+        <p class="form-note">Todos los campos son obligatorios.</p>
 
-            <label for="power">Potencia:</label>
-            <input type="text" id="power" name="power" placeholder="Ej: 450 hp, 510 Nm" required />
-
-            <label for="acceleration">0-100Km/h:</label>
-            <input type="text" id="acceleration" name="acceleration" placeholder="Ej: 2.4 segundos" required />
-
-            <label for="top_speed">Velocidad Máxima:</label>
-            <input type="text" id="top_speed" name="top_speed" placeholder="Ej: 321 km/h" required />
-
-            <!-- Botón para subir el proyecto -->
-            <input type="submit" value="Subir Proyecto" />
-        </form>
-
-        <!-- Botón para volver a proyectos -->
-        <div class="highlight">
-            <a href="{{ url_for('proyectos') }}">Volver a Proyectos</a>
+        <div class="field">
+          <label for="pic">Foto del proyecto</label>
+          <input class="input" type="file" name="pic" id="pic" accept="image/*" required aria-describedby="pic-hint">
+          <p class="hint" id="pic-hint">Formatos de imagen (JPG, PNG, WEBP...). Tamaño máximo: 16 MB.</p>
         </div>
-    </div>
 
-</body>
-</html>
+        <div class="field">
+          <label for="project_name">Nombre del proyecto</label>
+          <input class="input" type="text" id="project_name" name="project_name" placeholder="Ej: McLaren MP4/4" autocomplete="off" required>
+        </div>
+
+        <div class="form-row form-row--2">
+          <div class="field">
+            <label for="motor">Motor</label>
+            <input class="input" type="text" id="motor" name="motor" placeholder="Ej: V6 Biturbo 4.5L" autocomplete="off" required>
+          </div>
+          <div class="field">
+            <label for="power">Potencia</label>
+            <input class="input" type="text" id="power" name="power" placeholder="Ej: 450 hp, 510 Nm" autocomplete="off" required>
+          </div>
+        </div>
+
+        <div class="form-row form-row--2">
+          <div class="field">
+            <label for="acceleration">Aceleración 0-100 km/h</label>
+            <input class="input" type="text" id="acceleration" name="acceleration" placeholder="Ej: 2.4 segundos" autocomplete="off" required>
+          </div>
+          <div class="field">
+            <label for="top_speed">Velocidad máxima</label>
+            <input class="input" type="text" id="top_speed" name="top_speed" placeholder="Ej: 321 km/h" autocomplete="off" required>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn" type="submit">{{ icon("upload") }}<span>Subir proyecto</span></button>
+          <a class="btn btn-outline" href="{{ url_for('proyectos') }}">Volver a proyectos</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}

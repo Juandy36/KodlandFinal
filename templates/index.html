@@ -1,107 +1,117 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leyendas Sobre Ruedas</title>
-    <link rel="stylesheet" href="static/css/mainpage.css">
-    <link rel="icon" href="static\img\Logo.ico">
-</head>
-<body>
-    <header>
-        <h1>Leyendas Sobre Ruedas</h1>
-        <nav>
-            <a href="/">Inicio</a>
-            <a href="/mythcar">Catálogo</a>
-            <a href="/proyectos">Proyectos</a>
-            <a href="/bot">Asistencia Virtual</a>
-        </nav>
-    </header>
+{% extends "base.html" %}
+{% from "_macros.html" import icon, project_card %}
 
-    <div class="container">
-        <section class="highlight">
-            <h2>Bienvenido a Leyendas Sobre Ruedas</h2>
-            <p>Bienvenido a un espacio donde la pasión por los autos no tiene límites. Leyendas Sobre Ruedas no es solo un lugar de exhibición, es un viaje a través del tiempo y la historia, donde los autos más icónicos del mundo cobran vida. Cada vehículo es mucho más que una simple máquina: es una obra de ingeniería, una representación de la innovación y el diseño que ha marcado época. En este espacio, cada curva, cada motor y cada detalle tienen una historia que contar. Aquí podrás explorar cómo estos autos han dejado su huella en el mundo, cómo su legado trasciende generaciones y cómo continúan inspirando a millones de personas en todo el planeta. Cada modelo tiene una esencia única, una personalidad que se refleja en su diseño, su rendimiento y en los momentos inolvidables que han protagonizado. Únete a nosotros y déjate llevar por la magia de los autos que, más que simples vehículos, son verdaderas leyendas sobre ruedas.</p>
-        </section>
+{% block title %}Inicio{% endblock %}
 
-        <!-- Sección de proyectos recientes -->
-        <section class="highlight">
-            <h2>Proyectos Recientes</h2>
-            <div class="projects-container">
-                {% for project in latest_projects %}
-                <div class="project-item">
-                    <h3>{{ project.project_name }}</h3>
-                    <img src="{{ url_for('get_img', id=project.id) }}" alt="{{ project.project_name }}">
-                    <p><strong>Motor:</strong> {{ project.motor }}</p>
-                    <p><strong>Potencia:</strong> {{ project.power }}</p>
-                    <p><strong>Velocidad Máxima:</strong> {{ project.top_speed }}</p>
-                </div>
-                {% endfor %}
-            </div>
-            <a href="/proyectos">Explorar Proyectos ></a>
-        </section>
-        
+{% block content %}
+<section class="hero" aria-labelledby="hero-title">
+  <div class="container">
+    <span class="eyebrow">Autos clásicos y míticos</span>
+    <h1 id="hero-title">Leyendas Sobre Ruedas</h1>
+    <p class="lead">Un viaje a través del tiempo y la historia, donde los autos más icónicos del mundo cobran vida.</p>
+    <div class="btn-group">
+      <a class="btn" href="{{ url_for('mythcar') }}">{{ icon("catalog") }}<span>Explorar el catálogo</span></a>
+      <a class="btn btn-outline" href="{{ url_for('upload_page') }}">{{ icon("upload") }}<span>Sube tu proyecto</span></a>
+    </div>
+  </div>
+</section>
 
-        <section class="highlight">
-            <h2>Únete a la Comunidad</h2>
-            <p>¿Tienes un proyecto único? Súbelo a nuestra galería y comparte tu pasión con el mundo.</p>
-            <a href="{{ url_for('upload_page') }}">Sube tu Proyecto Ahora</a>
-        </section>
+<section class="section" aria-labelledby="bienvenida-title">
+  <div class="container prose">
+    <h2 id="bienvenida-title">Bienvenido a Leyendas Sobre Ruedas</h2>
+    <p>Bienvenido a un espacio donde la pasión por los autos no tiene límites. Leyendas Sobre Ruedas no es solo un lugar de exhibición, es un viaje a través del tiempo y la historia, donde los autos más icónicos del mundo cobran vida. Cada vehículo es mucho más que una simple máquina: es una obra de ingeniería, una representación de la innovación y el diseño que ha marcado época.</p>
+    <p>En este espacio, cada curva, cada motor y cada detalle tienen una historia que contar. Aquí podrás explorar cómo estos autos han dejado su huella en el mundo, cómo su legado trasciende generaciones y cómo continúan inspirando a millones de personas en todo el planeta.</p>
+    <p>Cada modelo tiene una esencia única, una personalidad que se refleja en su diseño, su rendimiento y en los momentos inolvidables que han protagonizado. Únete a nosotros y déjate llevar por la magia de los autos que, más que simples vehículos, son verdaderas leyendas sobre ruedas.</p>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="recientes-title">
+  <div class="container">
+    <div class="section-header">
+      <h2 id="recientes-title">Proyectos recientes</h2>
+      <a class="link-arrow" href="{{ url_for('proyectos') }}"><span>Explorar proyectos</span>{{ icon("arrow-right") }}</a>
     </div>
 
-    <section class="highlight">
-        <h2>Preguntas Frecuentes</h2>
-        
-        <!-- Preguntas y respuestas -->
-        <div class="faq-item">
-            <h3>¿Cómo puedo saber si mi batería necesita ser cambiada?</h3>
-            <p>Si tu carro no enciende, las luces se ven opacas o el motor arranca lentamente, es probable que necesites cambiar la batería.</p>
-        </div>
-        <div class="faq-item">
-            <h3>¿Qué hacer si el motor se sobrecalienta?</h3>
-            <p>Detén el carro inmediatamente, apaga el motor y espera a que se enfríe. Luego revisa el nivel de refrigerante y busca fugas.</p>
-        </div>
-        <div class="faq-item">
-            <h3>¿Por qué mis frenos hacen ruido?</h3>
-            <p>Esto puede indicar desgaste en las pastillas de freno. Verifica con un mecánico para evitar daños mayores.</p>
-        </div>
-        <div class="faq-item">
-            <h3>¿Cómo puedo mejorar el rendimiento de combustible?</h3>
-            <p>Realiza mantenimientos regulares, mantén la presión adecuada en los neumáticos y evita aceleraciones bruscas.</p>
-        </div>
-        
-        <!-- Conceptos básicos -->
-        <div class="faq-item">
-            <h3>¿Qué es el aceite del motor?</h3>
-            <p>El aceite del motor lubrica las partes móviles para reducir el desgaste y mantener el motor funcionando a una temperatura estable. Cambiarlo regularmente es clave para evitar daños.</p>
-        </div>
-        <div class="faq-item">
-            <h3>¿Qué es el sistema de suspensión?</h3>
-            <p>La suspensión se encarga de mantener el contacto entre las llantas y la carretera. Ayuda a que el vehículo sea estable, absorba impactos y proporcione un viaje más cómodo.</p>
-        </div>
-        <div class="faq-item">
-            <h3>¿Por qué es importante la alineación de las ruedas?</h3>
-            <p>La alineación incorrecta de las ruedas puede hacer que el vehículo se desvíe hacia un lado, aumente el desgaste de los neumáticos y afecte la estabilidad en carretera.</p>
-        </div>
-        <div class="faq-item">
-            <h3>¿Cómo revisar el nivel de refrigerante?</h3>
-            <p>El nivel de refrigerante debe revisarse regularmente. Si está bajo, el motor puede sobrecalentarse. Asegúrate de hacerlo cuando el motor esté frío para evitar quemaduras.</p>
-        </div>
-    
-        <!-- Consejos básicos para cuidar tu carro -->
-        <div class="faq-item">
-            <h3>Consejos Básicos para Cuidar tu Carro</h3>
-            <p>1. Cambia el aceite regularmente. <br> 2. Mantén los neumáticos inflados a la presión correcta. <br> 3. Revisa los frenos con frecuencia. <br> 4. Evita acelerar bruscamente o frenar de forma abrupta. <br> 5. Lava el carro para evitar la corrosión.</p>
-        </div>
-    
-        <!-- Botón para asistencia virtual -->
-        <a href="/bot" class="faq-btn">Ir a Asistencia Virtual</a>
-    </section>
-    
-    <footer>
-        <p>Redes Sociales: <a href="https://www.instagram.com/leyendas.sobre.ruedas/">Instagram</a> | <a href="https://www.facebook.com/profile.php?id=61570013714619">Facebook</a> | <a href="#">Twitter</a></p>
-        <p>Contacto: soporte@leyendassobreruedas.com</p>
-        <p><a href="/terminos">Términos y Condiciones</a> | <a href="/politica">Política de Privacidad</a></p>
-    </footer>
-</body>
-</html>
+    {% if latest_projects %}
+    <div class="grid">
+      {% for project in latest_projects %}
+      {{ project_card(project, 3) }}
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="empty-state">
+      {{ icon("garage") }}
+      <p>Todavía no hay proyectos publicados. ¡Sé el primero en compartir el tuyo!</p>
+      <a class="btn" href="{{ url_for('upload_page') }}">{{ icon("upload") }}<span>Subir un proyecto</span></a>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+<section class="section" aria-labelledby="comunidad-title">
+  <div class="container">
+    <div class="callout">
+      <div>
+        <h2 id="comunidad-title">Únete a la comunidad</h2>
+        <p>¿Tienes un proyecto único? Súbelo a nuestra galería y comparte tu pasión con el mundo.</p>
+      </div>
+      <a class="btn" href="{{ url_for('upload_page') }}">{{ icon("upload") }}<span>Sube tu proyecto ahora</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="faq-title">
+  <div class="container">
+    <div class="section-header">
+      <h2 id="faq-title">Preguntas frecuentes</h2>
+    </div>
+
+    <div class="faq">
+      <details class="faq-item">
+        <summary><span>¿Cómo puedo saber si mi batería necesita ser cambiada?</span>{{ icon("chevron-down") }}</summary>
+        <div class="faq-answer"><p>Si tu carro no enciende, las luces se ven opacas o el motor arranca lentamente, es probable que necesites cambiar la batería.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary><span>¿Qué hacer si el motor se sobrecalienta?</span>{{ icon("chevron-down") }}</summary>
+        <div class="faq-answer"><p>Detén el carro inmediatamente, apaga el motor y espera a que se enfríe. Luego revisa el nivel de refrigerante y busca fugas.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary><span>¿Por qué mis frenos hacen ruido?</span>{{ icon("chevron-down") }}</summary>
+        <div class="faq-answer"><p>Esto puede indicar desgaste en las pastillas de freno. Verifica con un mecánico para evitar daños mayores.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary><span>¿Cómo puedo mejorar el rendimiento de combustible?</span>{{ icon("chevron-down") }}</summary>
+        <div class="faq-answer"><p>Realiza mantenimientos regulares, mantén la presión adecuada en los neumáticos y evita aceleraciones bruscas.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary><span>¿Qué es el aceite del motor?</span>{{ icon("chevron-down") }}</summary>
+        <div class="faq-answer"><p>El aceite del motor lubrica las partes móviles para reducir el desgaste y mantener el motor funcionando a una temperatura estable. Cambiarlo regularmente es clave para evitar daños.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary><span>¿Qué es el sistema de suspensión?</span>{{ icon("chevron-down") }}</summary>
+        <div class="faq-answer"><p>La suspensión se encarga de mantener el contacto entre las llantas y la carretera. Ayuda a que el vehículo sea estable, absorba impactos y proporcione un viaje más cómodo.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary><span>¿Por qué es importante la alineación de las ruedas?</span>{{ icon("chevron-down") }}</summary>
+        <div class="faq-answer"><p>La alineación incorrecta de las ruedas puede hacer que el vehículo se desvíe hacia un lado, aumente el desgaste de los neumáticos y afecte la estabilidad en carretera.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary><span>¿Cómo revisar el nivel de refrigerante?</span>{{ icon("chevron-down") }}</summary>
+        <div class="faq-answer"><p>El nivel de refrigerante debe revisarse regularmente. Si está bajo, el motor puede sobrecalentarse. Asegúrate de hacerlo cuando el motor esté frío para evitar quemaduras.</p></div>
+      </details>
+    </div>
+
+    <div class="tips">
+      <h3>Consejos básicos para cuidar tu carro</h3>
+      <ol>
+        <li>Cambia el aceite regularmente.</li>
+        <li>Mantén los neumáticos inflados a la presión correcta.</li>
+        <li>Revisa los frenos con frecuencia.</li>
+        <li>Evita acelerar bruscamente o frenar de forma abrupta.</li>
+        <li>Lava el carro para evitar la corrosión.</li>
+      </ol>
+      <a class="btn" href="{{ url_for('bot_page') }}">{{ icon("chat") }}<span>Ir a Asistencia Virtual</span></a>
+    </div>
+  </div>
+</section>
+{% endblock %}

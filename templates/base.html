@@ -1,0 +1,100 @@
+{%- from "_macros.html" import icon -%}
+{#- Navegacion principal. Se usan rutas literales (no url_for) para que la
+    plantilla base tambien funcione con main.py, que solo define algunas rutas. -#}
+{%- set nav_items = [
+  ("/", "Inicio"),
+  ("/mythcar", "Catálogo"),
+  ("/proyectos", "Proyectos"),
+  ("/bot", "Asistencia Virtual")
+] -%}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Inicio{% endblock %} | Leyendas Sobre Ruedas</title>
+  <meta name="description" content="{% block description %}Leyendas Sobre Ruedas: catálogo de autos clásicos y míticos, proyectos de la comunidad y asistencia mecánica virtual.{% endblock %}">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#14110f">
+  <link rel="icon" href="{{ url_for('static', filename='img/Logo.ico') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+  <script>document.documentElement.classList.add("js");</script>
+  <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+  {% block head %}{% endblock %}
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="/">
+        {{ icon("wheel", "icon brand-icon") }}
+        <span>Leyendas <span class="brand-accent">Sobre Ruedas</span></span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        {{ icon("menu") }}
+        <span>Menú</span>
+      </button>
+
+      <nav id="site-nav" class="site-nav" aria-label="Principal">
+        <ul>
+          {%- for href, label in nav_items %}
+          <li><a href="{{ href }}"{% if request.path == href %} aria-current="page"{% endif %}>{{ label }}</a></li>
+          {%- endfor %}
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido" tabindex="-1">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a class="brand" href="/">
+            {{ icon("wheel", "icon brand-icon") }}
+            <span>Leyendas <span class="brand-accent">Sobre Ruedas</span></span>
+          </a>
+          <p class="footer-about">Un homenaje a los autos clásicos y míticos que marcaron la historia del motor.</p>
+        </div>
+
+        <nav aria-label="Explorar">
+          <h2 class="footer-title">Explorar</h2>
+          <ul class="footer-links">
+            {%- for href, label in nav_items %}
+            <li><a href="{{ href }}">{{ label }}</a></li>
+            {%- endfor %}
+            <li><a href="/upload_page">Subir proyecto</a></li>
+          </ul>
+        </nav>
+
+        <div>
+          <h2 class="footer-title">Redes sociales</h2>
+          <ul class="footer-links">
+            <li><a href="https://www.instagram.com/leyendas.sobre.ruedas/">{{ icon("instagram") }}<span>Instagram</span></a></li>
+            <li><a href="https://www.facebook.com/profile.php?id=61570013714619">{{ icon("facebook") }}<span>Facebook</span></a></li>
+            <li><a href="#">{{ icon("twitter") }}<span>Twitter</span></a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 class="footer-title">Contacto y legal</h2>
+          <ul class="footer-links">
+            <li><a href="mailto:soporte@leyendassobreruedas.com">{{ icon("mail") }}<span>soporte@leyendassobreruedas.com</span></a></li>
+            <li><a href="/terminos"{% if request.path == "/terminos" %} aria-current="page"{% endif %}>Términos y Condiciones</a></li>
+            <li><a href="/politica"{% if request.path == "/politica" %} aria-current="page"{% endif %}>Política de Privacidad</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="footer-bottom">Leyendas Sobre Ruedas. Pasión por los autos clásicos y míticos.</p>
+    </div>
+  </footer>
+
+  {% block scripts %}{% endblock %}
+</body>
+</html>
