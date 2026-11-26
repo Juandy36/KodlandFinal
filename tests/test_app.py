@@ -92,6 +92,14 @@ class AppTestCase(unittest.TestCase):
         self.assertEqual(self.client.post("/enviar_mensaje", json={"message": 5}).status_code, 400)
         self.assertEqual(self.client.post("/enviar_mensaje", json=["hola"]).status_code, 400)
 
+    def test_chat_mensaje_solo_espacios_devuelve_400(self):
+        self.assertEqual(self.client.post("/enviar_mensaje", json={"message": "   "}).status_code, 400)
+
+    def test_menu_asistente_apunta_a_bot(self):
+        html = self.client.get("/mythcar").get_data(as_text=True)
+        self.assertIn('href="/bot"', html)
+        self.assertNotIn('href="#"', html)
+
     # --- Subida e imagenes -----------------------------------------------
     def test_subida_valida_redirige_y_se_ve(self):
         respuesta = self.subir()
@@ -116,6 +124,19 @@ class AppTestCase(unittest.TestCase):
 
     def test_imagen_inexistente_devuelve_404(self):
         self.assertEqual(self.client.get("/img/999").status_code, 404)
+
+    def test_subida_demasiado_grande_devuelve_413(self):
+        self.app.config["MAX_CONTENT_LENGTH"] = 100  # limite bajo solo para esta prueba
+        respuesta = self.subir(contenido=PNG_1X1 * 10)
+        self.assertEqual(respuesta.status_code, 413)
+
+    # --- Requisitos --------------------------------------------------------
+    def test_requirements_sin_discord(self):
+        ruta = os.path.join(os.path.dirname(__file__), "..", "requirements.txt")
+        with open(ruta, encoding="utf-8") as archivo:
+            contenido = archivo.read().lower()
+        self.assertNotIn("discord", contenido)
+        self.assertIn("flask", contenido)
 
 
 if __name__ == "__main__":
